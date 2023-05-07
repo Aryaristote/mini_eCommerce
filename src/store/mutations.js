@@ -5,4 +5,19 @@ export const updateItem = (state, payload) => {
     }
 }
 
+
+export const ADD_TO_CART = (state, { product, quantity }) => {
+    let productExistInCart = state.cart.find(item => {
+        return item.product.id === product.id;
+    })
+    if (productExistInCart) {
+        productExistInCart.quantity += quantity;
+        return;
+    } else {
+        state.cart.push({
+            product,
+            quantity
+        })
+    }
+}
   

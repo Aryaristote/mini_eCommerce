@@ -6,4 +6,8 @@ export const updateItemAction = ({ state, commit }, payload) => {
   const updatedItem = { ...item, ...payload }
   commit("updateItem", updatedItem)
 }
+
+export const addProductToCart = ({ commit }, { product, quantity }) => {
+    commit('ADD_TO_CART', { product, quantity})
+}
   

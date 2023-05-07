@@ -1,6 +1,6 @@
 <template>
   <!-- <div> -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;width: 100%;z-index: 1">
       <div class="container">
         <a class="navbar-brand" href="#">JKK</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +18,10 @@
         </ul>
       </div>
       <router-link to="/cart" class="nav-link">
-        Cart 0
+        <button class="btn btn-warning">Cart {{ cartItemCount }}</button>
       </router-link>
       </div>
-    </nav>
+    </nav><br><br>
   <!-- </div> -->
 </template>
 
@@ -29,6 +29,12 @@
 
 export default {
   name: 'HelloWorld',
+
+  computed: {
+    cartItemCount() {
+      return this.$store.getters.cartItemCount
+    }
+  }
 }
 </script>
 

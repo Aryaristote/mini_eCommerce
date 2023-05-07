@@ -1,16 +1,56 @@
 <template>
-    <div class="container mt-5">
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Well done!</h4>
-            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-            <hr>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-          </div>
+    <div class="home container"><br><br>
+      <div>
+        <h2>Your cart {{ cart.length === 0 ? "is empty" : ": "+cart.length }}</h2>
+        <table class="table" v-if="cart.length">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Count </th>
+              <th scope="col">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in cart" :key="item.product.id">
+              <th scope="row">{{item.product.id}}</th>
+              <td>{{item.product.title}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.product.price}}</td>
+              <td>{{item.product.rating.rate}}</td>
+              <td>{{item.product.rating.count}}</td>
+              <td>
+                <button type="button" class="btn btn-warning">
+                  Remove
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div v-else class="alert alert-danger" role="alert">
+          Please add some products
+        </div>
+      </div>
     </div>
-</template>
-
-<script>
-export default {
-    
-}
-</script>
+  </template>
+  
+  <script>
+  // @ is an alias to /src
+  import ProductList from '@/components/ProductList.vue'
+  
+  export default {
+    name: 'HomeView',
+    components: {
+      ProductList
+    },
+    computed: {
+      cart (){
+        return this.$store.state.cart  
+      }
+    }
+  }
+  </script>
+  
